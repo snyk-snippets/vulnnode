@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vulnnode-deployment
+  labels:
+    app: vulnnode
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vulnnode
+  template:
+    metadata:
+      labels:
+        app: vulnnode 
+    spec:
+      containers:
+      - name: nodeserver
+        image: vulnnode:latest
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Never
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: vulnnode-service
+spec:
+  selector:
+    app: vulnnode 
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 5000
+    targetPort: 3000
+    nodePort: 31110

@@ -1,0 +1,11 @@
+version: "2"
+
+services:
+  app:
+    container_name: vulnnode
+    image: vulnnode
+    build:
+      context: .
+      target: development
+    ports:
+      - "3000:3000"

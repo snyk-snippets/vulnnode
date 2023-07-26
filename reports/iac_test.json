@@ -1,0 +1,342 @@
+{
+  "meta": {
+    "isPrivate": true,
+    "isLicensesEnabled": false,
+    "ignoreSettings": {
+      "adminOnly": false,
+      "reasonRequired": false,
+      "disregardFilesystemIgnores": false
+    },
+    "org": "iamgideonidoko",
+    "orgPublicId": "cd1cf9f0-8472-453c-9975-0f8b9ec8af6a",
+    "policy": ""
+  },
+  "filesystemPolicy": false,
+  "vulnerabilities": [],
+  "dependencyCount": 0,
+  "licensesPolicy": null,
+  "ignoreSettings": null,
+  "targetFile": "kube.yml",
+  "projectName": "vulnnode",
+  "org": "iamgideonidoko",
+  "policy": "",
+  "isPrivate": true,
+  "targetFilePath": "/Users/iamgideonidoko/Archive/Projects/vulnnode/kube.yml",
+  "packageManager": "k8sconfig",
+  "path": "kube.yml",
+  "projectType": "k8sconfig",
+  "ok": false,
+  "infrastructureAsCodeIssues": [
+    {
+      "id": "SNYK-CC-K8S-42",
+      "title": "Container could be running with outdated image",
+      "severity": "low",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-42",
+      "isGeneratedByCustomRule": false,
+      "issue": "The image policy does not prevent image reuse",
+      "impact": "The container may run with outdated or unauthorized image",
+      "resolve": "Set `imagePullPolicy` attribute to `Always`",
+      "remediation": {
+        "kubernetes": "Set `imagePullPolicy` attribute to `Always`",
+        "terraform": "Set `image_pull_policy` attribute to `Always"
+      },
+      "lineNumber": 22,
+      "iacDescription": {
+        "issue": "The image policy does not prevent image reuse",
+        "impact": "The container may run with outdated or unauthorized image",
+        "resolve": "Set `imagePullPolicy` attribute to `Always`"
+      },
+      "publicId": "SNYK-CC-K8S-42",
+      "msg": "spec.template.spec.containers[nodeserver].imagePullPolicy",
+      "references": [
+        "5.27 Ensure that Docker commands always make use of the latest version of their image",
+        "https://kubernetes.io/docs/concepts/containers/images/",
+        "https://kubernetes.io/docs/concepts/configuration/overview/#container-images"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "imagePullPolicy"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-11",
+      "title": "Container's or Pod's  UID could clash with host's UID",
+      "severity": "low",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-11",
+      "isGeneratedByCustomRule": false,
+      "issue": "`runAsUser` value is set to low UID",
+      "impact": "UID of the container processes could clash with host's UIDs and lead to unintentional authorization bypass",
+      "resolve": "Set `securityContext.runAsUser` value to greater or equal than 10'000. SecurityContext can be set on both `pod` and `container` level. If both are set, then the container level takes precedence",
+      "remediation": {
+        "kubernetes": "Set `securityContext.runAsUser` value to greater or equal than 10'000. SecurityContext can be set on both `pod` and `container` level. If both are set, then the container level takes precedence",
+        "terraform": "Set `security_context.run_as_user` value to greater or equal than 10'000"
+      },
+      "lineNumber": 18,
+      "iacDescription": {
+        "issue": "`runAsUser` value is set to low UID",
+        "impact": "UID of the container processes could clash with host's UIDs and lead to unintentional authorization bypass",
+        "resolve": "Set `securityContext.runAsUser` value to greater or equal than 10'000. SecurityContext can be set on both `pod` and `container` level. If both are set, then the container level takes precedence"
+      },
+      "publicId": "SNYK-CC-K8S-11",
+      "msg": "input.spec.template.spec.containers[nodeserver].securityContext.runAsUser",
+      "references": [
+        "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container",
+        "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod",
+        "https://kubernetes.io/blog/2016/08/security-best-practices-kubernetes-deployment/"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "input",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "securityContext",
+        "runAsUser"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-41",
+      "title": "Container is running without liveness probe",
+      "severity": "low",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-41",
+      "isGeneratedByCustomRule": false,
+      "issue": "Liveness probe is not defined",
+      "impact": "Kubernetes will not be able to detect if application is able to service requests, and will not restart unhealthy pods",
+      "resolve": "Add `livenessProbe` attribute",
+      "remediation": {
+        "kubernetes": "Add `livenessProbe` attribute",
+        "terraform": "Add `liveness_probe` attribute"
+      },
+      "lineNumber": 18,
+      "iacDescription": {
+        "issue": "Liveness probe is not defined",
+        "impact": "Kubernetes will not be able to detect if application is able to service requests, and will not restart unhealthy pods",
+        "resolve": "Add `livenessProbe` attribute"
+      },
+      "publicId": "SNYK-CC-K8S-41",
+      "msg": "spec.template.spec.containers[nodeserver].livenessProbe",
+      "references": [
+        "CIS Docker Benchmark v1.2.0 - 5.26 Ensure that container health is checked at runtime",
+        "https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/",
+        "https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/",
+        "https://cloud.google.com/blog/products/gcp/kubernetes-best-practices-setting-up-health-checks-with-readiness-and-liveness-probes"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "livenessProbe"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-6",
+      "title": "Container does not drop all default capabilities",
+      "severity": "medium",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-6",
+      "isGeneratedByCustomRule": false,
+      "issue": "All default capabilities are not explicitly dropped",
+      "impact": "Containers are running with potentially unnecessary privileges",
+      "resolve": "Add `ALL` to `securityContext.capabilities.drop` list, and add only required capabilities in `securityContext.capabilities.add`",
+      "remediation": {
+        "kubernetes": "Add `ALL` to `securityContext.capabilities.drop` list, and add only required capabilities in `securityContext.capabilities.add`",
+        "terraform": "Add `ALL` to `spec.container.security_context.capabilities.drop` list, and add only required capabilities to `spec.container.security_context.capabilities.add`, ensuring it also does not contain `ALL`"
+      },
+      "lineNumber": 18,
+      "iacDescription": {
+        "issue": "All default capabilities are not explicitly dropped",
+        "impact": "Containers are running with potentially unnecessary privileges",
+        "resolve": "Add `ALL` to `securityContext.capabilities.drop` list, and add only required capabilities in `securityContext.capabilities.add`"
+      },
+      "publicId": "SNYK-CC-K8S-6",
+      "msg": "input.spec.template.spec.containers[nodeserver].securityContext.capabilities.drop",
+      "references": [
+        "https://kubernetes.io/docs/tasks/configure-pod-container/security-context/",
+        "https://linux-audit.com/linux-capabilities-hardening-linux-binaries-by-removing-setuid/"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "input",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "securityContext",
+        "capabilities",
+        "drop"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-8",
+      "title": "Container or Pod is running with writable root filesystem",
+      "severity": "low",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-8",
+      "isGeneratedByCustomRule": false,
+      "issue": "`readOnlyRootFilesystem` attribute is not set to `true`",
+      "impact": "Compromised process could abuse writable root filesystem to elevate privileges",
+      "resolve": "Set `securityContext.readOnlyRootFilesystem` to `true`",
+      "remediation": {
+        "kubernetes": "Set `securityContext.readOnlyRootFilesystem` to `true`",
+        "terraform": "Set `security_context.read_only_root_filesystem` to `true`"
+      },
+      "lineNumber": 18,
+      "iacDescription": {
+        "issue": "`readOnlyRootFilesystem` attribute is not set to `true`",
+        "impact": "Compromised process could abuse writable root filesystem to elevate privileges",
+        "resolve": "Set `securityContext.readOnlyRootFilesystem` to `true`"
+      },
+      "publicId": "SNYK-CC-K8S-8",
+      "msg": "input.spec.template.spec.containers[nodeserver].securityContext.readOnlyRootFilesystem",
+      "references": [
+        "CIS Docker Benchmark 1.2.0 - Ensure that the container's root filesystem is mounted as read only",
+        "https://kubernetes.io/blog/2016/08/security-best-practices-kubernetes-deployment/"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "input",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "securityContext",
+        "readOnlyRootFilesystem"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-9",
+      "title": "Container or Pod is running without privilege escalation control",
+      "severity": "medium",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-9",
+      "isGeneratedByCustomRule": false,
+      "issue": "`allowPrivilegeEscalation` attribute is not set to `false`",
+      "impact": "Processes could elevate current privileges via known vectors, for example SUID binaries",
+      "resolve": "Set `securityContext.allowPrivilegeEscalation` to `false`",
+      "remediation": {
+        "kubernetes": "Set `securityContext.allowPrivilegeEscalation` to `false`",
+        "terraform": "Set `spec.container.security_context.allow_privilege_escalation` to `false`"
+      },
+      "lineNumber": 18,
+      "iacDescription": {
+        "issue": "`allowPrivilegeEscalation` attribute is not set to `false`",
+        "impact": "Processes could elevate current privileges via known vectors, for example SUID binaries",
+        "resolve": "Set `securityContext.allowPrivilegeEscalation` to `false`"
+      },
+      "publicId": "SNYK-CC-K8S-9",
+      "msg": "input.spec.template.spec.containers[nodeserver].securityContext.allowPrivilegeEscalation",
+      "references": [
+        "CIS Docker Benchmark 1.2.0 - 5.25 Ensure that the container is restricted from acquiring additional privileges",
+        "https://www.kernel.org/doc/html/latest/userspace-api/no_new_privs.html"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "input",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "securityContext",
+        "allowPrivilegeEscalation"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-10",
+      "title": "Container or Pod is running without root user control",
+      "severity": "medium",
+      "isIgnored": false,
+      "subType": "Deployment",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-10",
+      "isGeneratedByCustomRule": false,
+      "issue": "Container or Pod is running without root user control",
+      "impact": "Container or Pod could be running with full administrative privileges",
+      "resolve": "Set `securityContext.runAsNonRoot` to `true`",
+      "remediation": {
+        "kubernetes": "Set `securityContext.runAsNonRoot` to `true`",
+        "terraform": "Set `security_context.run_as_non_root` to `true`"
+      },
+      "lineNumber": 18,
+      "iacDescription": {
+        "issue": "Container or Pod is running without root user control",
+        "impact": "Container or Pod could be running with full administrative privileges",
+        "resolve": "Set `securityContext.runAsNonRoot` to `true`"
+      },
+      "publicId": "SNYK-CC-K8S-10",
+      "msg": "input.spec.template.spec.containers[nodeserver].securityContext.runAsNonRoot",
+      "description": "",
+      "references": [
+        "CIS Docker Benchmark 1.2.0 - 5.5 Ensure sensitive host system directories are not mounted on containers",
+        "https://kubernetes.io/blog/2016/08/security-best-practices-kubernetes-deployment/"
+      ],
+      "path": [
+        "[DocId: 0]",
+        "input",
+        "spec",
+        "template",
+        "spec",
+        "containers[nodeserver]",
+        "securityContext",
+        "runAsNonRoot"
+      ],
+      "compliance": []
+    },
+    {
+      "id": "SNYK-CC-K8S-15",
+      "title": "Service does not restrict ingress sources",
+      "severity": "medium",
+      "isIgnored": false,
+      "subType": "Service",
+      "documentation": "https://security.snyk.io/rules/cloud/SNYK-CC-K8S-15",
+      "isGeneratedByCustomRule": false,
+      "issue": "Defining a Load balancer Service without setting the loadBalancerSourceRanges property will use the default value of 0.0.0.0/0.",
+      "impact": "This allows access to any traffic to the Node Security Group(s), potentially meaning everyone can access your service.",
+      "resolve": "Set `loadBalancerSourceRanges` attribute value to specific IP addresses",
+      "remediation": {
+        "kubernetes": "Set `loadBalancerSourceRanges` attribute value to specific IP addresses",
+        "terraform": "Set `load_balancer_source_ranges` attribute value to specific IP addresses"
+      },
+      "lineNumber": 38,
+      "iacDescription": {
+        "issue": "Defining a Load balancer Service without setting the loadBalancerSourceRanges property will use the default value of 0.0.0.0/0.",
+        "impact": "This allows access to any traffic to the Node Security Group(s), potentially meaning everyone can access your service.",
+        "resolve": "Set `loadBalancerSourceRanges` attribute value to specific IP addresses"
+      },
+      "publicId": "SNYK-CC-K8S-15",
+      "msg": "input.spec.loadBalancerSourceRanges",
+      "description": "",
+      "references": [
+        "https://kubernetes.io/docs/concepts/services-networking/service/",
+        "https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/"
+      ],
+      "path": [
+        "[DocId: 1]",
+        "input",
+        "spec",
+        "loadBalancerSourceRanges"
+      ],
+      "compliance": []
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "vulnnode",
+  "description": "vulnnode",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.17.1",
+    "lodash": "4.17.4"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
