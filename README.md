@@ -22,7 +22,7 @@ App will be started on port 3000.
 ```sh
 docker compose up --detach app
 ```
-App will be available on port 3000.
+App will be available on port 4000.
 
 ### Create kubernetes resource
 
